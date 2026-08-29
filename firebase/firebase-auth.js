@@ -8,7 +8,8 @@ const signup = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             // Signed up 
-            const user = userCredential.user;
+            const user = userCredential.user
+            localStorage.setItem("userId", user.uid);
             console.log("user siginup successfully");
             return user;
         })
@@ -27,8 +28,9 @@ const login = (email, password) => {
         .then((userCredential) => {
             // Signed in 
             const user = userCredential.user;
-            return user
+            localStorage.setItem("userId", user.uid)
             console.log("User login succesfully");
+            return user
 
         })
         .catch((error) => {
@@ -42,6 +44,7 @@ const login = (email, password) => {
 const logout = () => {
     signOut(auth).then(() => {
         console.log("Logout successfull");
+        localStorage.clear("userId")
         window.location.href = "../login/login.html"
     }).catch((error) => {
         console.log(error);
@@ -50,10 +53,10 @@ const logout = () => {
 
 }
 
+
 const protectPage = () => {
     onAuthStateChanged(auth, (user) => {
         if (!user) {
-            
             window.location.href = "../login/login.html"
         }
     });
@@ -68,4 +71,4 @@ const redirectIfLogin = () => {
     });
 }
 
-export { auth , signup, login, logout, protectPage, redirectIfLogin }
+export { auth , signup, login, logout, protectPage, redirectIfLogin}

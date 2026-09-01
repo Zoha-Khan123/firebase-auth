@@ -11,9 +11,6 @@ const handleLogin = async (e) => {
     const password = document.getElementById("password").value
 
     await login(email,password)
-    console.log("login");
-    
-    window.location.href = "../dashboard/dashboard.html"
     e.target.reset()
 }
 

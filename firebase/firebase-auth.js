@@ -30,13 +30,15 @@ const login = (email, password) => {
             const user = userCredential.user;
             localStorage.setItem("userId", user.uid)
             console.log("User login succesfully");
+            window.location.href = "../dashboard/dashboard.html"
+
             return user
 
         })
         .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
-            console.log(errorMessage);
+            console.log(error);
 
         });
 }

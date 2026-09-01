@@ -1,17 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Home Page</title>
+    <link rel="stylesheet" href="dashboard.css">
 </head>
+
 <body>
-     <nav>
-        <a href="/index.html">Home</a>
-        <a href="../create-blog/create-blog.html">Create Blog</a>
+    <!-- Navbar -->
+    <nav>
+        <div class="nav_content">
+            <h1 id="username"></h1>
+
+            <div class="right">
+
+                <input type="text" placeholder="Search Blogs">
+
+                <select name="" id="">
+                    <option value="" disabled selected>Select blog category</option>
+                    <option value="travel">Travel</option>
+                    <option value="healthy">Health</option>
+                    <option value="food">Food</option>
+                    <option value="technology">Technology</option>
+                    <option value="fitness">Fitness</option>
+                    <option value="education">Education</option>
+                    <option value="entertainment">Entertainment</option>
+                </select>
+
+                <a href="../create-blog/create-blog.html">Create Blog</a>
+
+               <button id="logout">Logout</button>
+
+                <div class="after_login">
+                    <button>Dashboard</button>
+                    <button>Logout</button>
+                </div>
+
+            </div>
+        </div>
     </nav>
-    <H1>Dashboard <span id="username"></span></H1>
-    <button id="logout">Logout</button>
+
+    <!-- All Blog Cards -->
+    <div class="blog_cards" id="BlogCards">
+
+    </div>
+
     <script type="module" src="dashboard.js"></script>
 </body>
+
 </html>

@@ -1,5 +1,5 @@
 import { logout , protectPage} from "../firebase/firebase-auth.js";
-import { addBlogInDb, getBlogInDb } from "../firebase/firebase-firestore.js";
+import { addBlogInDb } from "../firebase/firebase-firestore.js";
 
 protectPage()
 
@@ -30,4 +30,3 @@ const createBlog =  async (e) => {
 
 blogForm.addEventListener("submit",createBlog)
 
-getBlogInDb()

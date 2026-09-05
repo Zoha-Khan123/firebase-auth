@@ -3,16 +3,14 @@ import { login, redirectIfLogin } from "../firebase/firebase-auth.js"
 redirectIfLogin()
 
 const loginForm = document.getElementById("loginForm")
+ 
 
 
-const handleLogin = async (e) => {
+const handleLogin = (e) => {
     e.preventDefault()
     const email = document.getElementById("email").value
     const password = document.getElementById("password").value
 
-    await login(email,password)
-    e.target.reset()
+    login(email,password)
 }
-
-
 loginForm.addEventListener("submit",handleLogin)

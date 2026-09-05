@@ -1,32 +1,23 @@
 import { logout, protectPage } from "../firebase/firebase-auth.js"
-import { getBlogInDb, getUserInDb } from "../firebase/firebase-firestore.js"
-
+import { getBlogInDb } from "../firebase/firebase-firestore.js"
 protectPage()
 
-const logoutBtn = document.getElementById("logout")
+const logoutBtn = document.getElementById("logoutBtn")
 logoutBtn.addEventListener("click",logout)
 
-const currentUser = await getUserInDb()
-const username = document.getElementById("username")
-username.textContent = currentUser.name + " Blogs"
+const myBlogs = await getBlogInDb()
+console.log("my blogs",myBlogs);
 
 
-const blogData = await getBlogInDb()
-console.log("blog data" , blogData);
-
-
-const blogCards = document.getElementById("BlogCards")
-
-for(let {id,userId,category,title,content,timestamp} of blogData){
-    
-    blogCards.innerHTML += ` 
-    <div class="blog_card_1">
-                <h5>${category}</h5>
-                <h1>${title}</h1>
-                <p>${content}</p>
-                <p>Author ID: ${userId}</p>
-                <p>${timestamp.toDate().toLocaleString()}</p>
-                <button onclick="window.location.href = '../blog-details/blog-detail.html?id=${id}'">READ MORE</button>
+const blogCards = document.getElementById("blogCards")
+for(const blog of myBlogs){
+    blogCards.innerHTML += `
+        <div class="blog_card_1">
+                <h5>${blog.blogCategory}</h5>
+                <h1>${blog.blogTitle}</h1>
+                <p>${blog.blogContent}</p>
+                <p>Author ID: ${blog.userId}</p>
+                <button onclick = "window.location.href = '../blog-details/blog-detail.html?id=${blog.id}'">Read  More</button>
             </div>`
 }
 
